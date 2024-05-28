@@ -158,111 +158,110 @@
     Main wrapper start
 ***********************************-->
 <div id="main-wrapper">
-<%--    <div class="content-body">--%>
+    <%--    <div class="content-body">--%>
 
 
-        <div class="container emp-profile">
+    <div class="container emp-profile">
 
-            <form action="/tracuu" method="post" class="row">
-                <input name="sbd" type="search" class="form-control col-8" placeholder="Search Students"
-                       aria-label="Search Students">
-                <button class="btn-primary col-4" type="submit">Search</button>
-            </form>
+        <form action="/tracuu" method="post" class="row">
+            <input name="sbd" type="search" class="form-control col-8" placeholder="Search Students"
+                   aria-label="Search Students">
+            <button class="btn-primary col-4" type="submit">Search</button>
+        </form>
 
-            <br>
-            <hr>
-            <br>
+        <br>
+        <hr>
+        <br>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <img src="${student.getAvatar()}" alt="" class="fixed-size-img"
-                             style="width: 250px; height: 250px; object-fit: cover;"/>
-                        <%--                        <div class="file btn btn-lg btn-primary">--%>
-                        <%--                            Change Photo--%>
-                        <%--                            <input type="file" name="file"/>--%>
-                        <%--                        </div>--%>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
-                        <h5>
-                            Họ Tên :${student.getName()}
-                        </h5>
-                        <h6>
-                            Ngành Học : ${student.getMajor()}
-                        </h6>
-                        <p class="proile-rating">GPA : <span>${student.getGpa()}</span></p>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                   aria-controls="home" aria-selected="true">About</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <c:if test="${sessionScope.account.role == 'admin'}">
-                        <button class="profile-edit-btn" name="btnAddMore">Edit Profile</button>
-                    </c:if>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="${student.getAvatar()}" alt="" class="fixed-size-img"
+                         style="width: 250px; height: 250px; object-fit: cover;"/>
+                    <%--                        <div class="file btn btn-lg btn-primary">--%>
+                    <%--                            Change Photo--%>
+                    <%--                            <input type="file" name="file"/>--%>
+                    <%--                        </div>--%>
                 </div>
             </div>
-            <br>
-            <br>
-            <div class="row">
-<%--                <div class="col-md-1">--%>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        Họ Tên :${student.getName()}
+                    </h5>
+                    <h6>
+                        Ngành Học : ${student.getMajor()}
+                    </h6>
+                    <p class="proile-rating">GPA : <span>${student.getGpa()}</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                               aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <c:if test="${sessionScope.account.role == 'admin'}">
+                    <button class="profile-edit-btn" name="btnAddMore">Edit Profile</button>
+                </c:if>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <%--                <div class="col-md-1">--%>
 
-<%--                </div>--%>
-                <div class="col-md-10">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Số báo danh</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${student.getIdCardNumber()}</p>
-                                </div>
+            <%--                </div>--%>
+            <div class="col-md-10">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Số báo danh</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Họ và tên</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${student.getName()}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>${student.getIdCardNumber()}</p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Giới tính</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${student.getGender()}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Họ và tên</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Ngày sinh</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${student.getBirthday()}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>${student.getName()}</p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Chuyên ngành</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${student.getMajor()}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Giới tính</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Địa chỉ</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${student.getAddress()}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>${student.getGender()}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Ngày sinh</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${student.getBirthday()}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Chuyên ngành</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${student.getMajor()}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Địa chỉ</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${student.getAddress()}</p>
                             </div>
                         </div>
                     </div>
@@ -270,6 +269,69 @@
             </div>
         </div>
     </div>
+    <div class="container emp-profile">
+        <div class="row">
+            <h3 style="color: #00cc66">Danh sách khen thưởng</h3>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="tab-content profile-tab">
+                    <hr>
+                    <c:forEach items="${khenThuongList}" var="ktkl">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Ngày:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <p>${ktkl.getDate()}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Nội dung:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <p>${ktkl.getContent()}</p>
+                            </div>
+                        </div>
+                        <hr>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <div class="container emp-profile">
+        <div class="row">
+            <h3 style="color: red">Danh sách kỷ luật</h3>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="tab-content profile-tab">
+                    <hr>
+                    <c:forEach items="${kyLuatList}" var="ktkl">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Ngày:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <p>${ktkl.getDate()}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Nội dung:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <p>${ktkl.getContent()}</p>
+                            </div>
+                        </div>
+                        <hr>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
 <!--**********************************
     Main wrapper end
 ***********************************-->

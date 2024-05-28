@@ -120,6 +120,7 @@ public class StudentDAO {
         }
         return student;
     }
+
     public Student findByIdCardNumber(String idCardNumber) {
         Student student = null;
         String sql = "SELECT * FROM Student WHERE idCardNumber = ?";
@@ -145,6 +146,34 @@ public class StudentDAO {
             e.printStackTrace();
         }
         return student;
+    }
+
+    public List<Student> findByIdKhoaAndStatus(String idKhoa, boolean status) {
+        String sql = "SELECT * FROM Student WHERE idKhoa = ? and status = ?";
+        List<Student> students = new ArrayList<>();
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, idKhoa);
+            stmt.setBoolean(2, status);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Student student = new Student();
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setBirthday(rs.getDate("birthday"));
+                student.setGender(rs.getString("gender"));
+                student.setIdKhoa(rs.getString("idKhoa"));
+                student.setAvatar(rs.getString("avatar"));
+                student.setIdCardNumber(rs.getString("idCardNumber"));
+                student.setAddress(rs.getString("address"));
+                student.setStatus(rs.getBoolean("status"));
+                student.setMajor(rs.getString("major"));
+                student.setGpa(rs.getDouble("gpa"));
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
     }
 
     public List<Student> getAll() {

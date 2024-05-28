@@ -57,12 +57,13 @@ public class KhenThuongKyLuatDAO {
         }
     }
 
-    public List<KhenThuongKyLuat> getKhenThuongKyLuatByEmployeeID(int employeeID) {
+    public List<KhenThuongKyLuat> getKhenThuongKyLuatByStudentId(int studentId, String type) {
         List<KhenThuongKyLuat> khenThuongKyLuats = new ArrayList<>();
-        String selectQuery = "SELECT * FROM KhenThuongKyLuat WHERE studentId = ?";
+        String selectQuery = "SELECT * FROM KhenThuongKyLuat WHERE studentId = ? and type = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
-            preparedStatement.setInt(1, employeeID);
+            preparedStatement.setInt(1, studentId);
+            preparedStatement.setString(2, type);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 KhenThuongKyLuat khenThuongKyLuat = new KhenThuongKyLuat();

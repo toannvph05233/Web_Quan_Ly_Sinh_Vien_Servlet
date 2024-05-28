@@ -92,7 +92,9 @@
                     <li class="icons dropdown">
                         <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                             <span class="activity active"></span>
-                            c                        </div>
+                            <img src="${sessionScope.account.avatar}" height="40" width="40" alt="">
+
+                        </div>
                         <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                             <div class="dropdown-content-body">
                                 <ul>
@@ -103,7 +105,7 @@
                                     <hr class="my-2">
                                     <li><a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                                     </li>
-                                    <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    <li><a href="/login"><i class="icon-key"></i> <span>Logout</span></a></li>
                                 </ul>
                             </div>
                         </div>

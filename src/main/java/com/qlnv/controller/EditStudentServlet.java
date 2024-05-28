@@ -43,6 +43,10 @@ public class EditStudentServlet extends HttpServlet {
             avatarFileName = extractFileName(avatarPart);
             String savePath = "/Users/johntoan98gmail.com/Desktop/quan_ly/web_quan_ly_nhan_vien_servlet/src/main/webapp/images/" + avatarFileName;
             avatarPart.write(savePath);
+            avatarFileName = "/images/" + avatarFileName;
+        } else {
+            Student student = studentDAO.findByID(id);
+            avatarFileName = student.getAvatar();
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date parsed = new Date();
@@ -52,10 +56,11 @@ public class EditStudentServlet extends HttpServlet {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        Student student = new Student(id, name, parsed, gender, "/images/"+avatarFileName, major, address, gpa, sbd, status.isEmpty());
+
+        Student student = new Student(id, name, parsed, gender, avatarFileName, major, address, gpa, sbd, status.isEmpty());
         studentDAO.update(student);
 
-        response.sendRedirect("/student?id=" + id); // Redirect back to the student's profile page
+        response.sendRedirect("/admin/student?id=" + id); // Redirect back to the student's profile page
     }
 
     private String extractFileName(Part part) {

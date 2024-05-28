@@ -197,7 +197,8 @@
                     <li class="icons dropdown">
                         <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                             <span class="activity active"></span>
-                            c                        </div>
+                            <img src="${sessionScope.account.avatar}" height="40" width="40" alt="">
+                        </div>
                         <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                             <div class="dropdown-content-body">
                                 <ul>
@@ -208,7 +209,7 @@
                                     <hr class="my-2">
                                     <li><a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                                     </li>
-                                    <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    <li><a href="/login"><i class="icon-key"></i> <span>Logout</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -220,26 +221,42 @@
 
     <div class="nk-sidebar">
         <div class="nk-nav-scroll">
-            <ul class="metismenu" id="menu">
-                <li class="nav-label">Dashboard</li>
-                <li>
-                    <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                        <i class="icon-user menu-icon"></i><span class="nav-text">Students</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="/students">All Students</a></li>
-                        <li><a href="/students?status=true">Active</a></li>
-                        <li><a href="/students?status=false">Inactive</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <br>
-                    <a style="width: 80%; margin-left: 20px;" href="/createStudent" type="button"
-                       class="btn btn-success">Create Student</a>
-                </li>
+            <c:if test="${sessionScope.account.role == 'admin'}">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Dashboard Admin</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Students</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/admin/student">All Students</a></li>
+                            <li><a href="/admin/student?status=true">Active</a></li>
+                            <li><a href="/admin/student?status=false">Inactive</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <br>
+                        <a style="width: 80%; margin-left: 20px;" href="/createStudent" type="button"
+                           class="btn btn-success">Create Student</a>
+                    </li>
 
 
-            </ul>
+                </ul>
+            </c:if>
+            <c:if test="${sessionScope.account.role == 'gv'}">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Dashboard Giảng Viên</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Students</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/students?status=true">Active</a></li>
+                            <li><a href="/students?status=false">Inactive</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </c:if>
         </div>
     </div>
 
@@ -421,6 +438,117 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="container emp-profile">
+            <div class="row">
+                <h3 style="color: #00cc66">Danh sách khen thưởng</h3>
+                <c:if test="${sessionScope.account.role == 'admin'}">
+                    <button data-toggle="modal" data-target="#myModal" style="margin-left:50px" type="button" class="btn btn-primary">Create</button>
+                </c:if>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="tab-content profile-tab">
+                        <hr>
+                        <c:forEach items="${khenThuongList}" var="ktkl">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <strong>Ngày:</strong>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>${ktkl.getDate()}</p>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <strong>Nội dung:</strong>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>${ktkl.getContent()}</p>
+                                </div>
+                            </div>
+                            <a href="/khenThuongKyLuat?id=${ktkl.id}&&idStudent=${student.id}">Delete</a>
+                            <hr>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+
+        <div class="container emp-profile">
+            <div class="row">
+                <h3 style="color: red">Danh sách kỷ luật</h3>
+                <c:if test="${sessionScope.account.role == 'admin'}">
+                    <button data-toggle="modal" data-target="#myModal" style="margin-left:50px" type="button" class="btn btn-primary">Create</button>
+                </c:if>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="tab-content profile-tab">
+                        <hr>
+                        <c:forEach items="${kyLuatList}" var="ktkl">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <strong>Ngày:</strong>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>${ktkl.getDate()}</p>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <strong>Nội dung:</strong>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>${ktkl.getContent()}</p>
+                                </div>
+                            </div>
+                            <a href="/khenThuongKyLuat?id=${ktkl.id}&&idStudent=${student.id}">Delete</a>
+                            <hr>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="/khenThuongKyLuat" method="post" >
+                        <div class="modal-header">
+                            <h5 class="modal-title">Tạo Khen Thưởng Kỷ Luật</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="idStudent" value="${student.getId()}">
+
+                            <div class="form-group">
+                                <label for="type">Khoa</label>
+                                <select name="type" id="type">
+                                        <option value="kt">Khen thưởng</option>
+                                        <option value="kl">Kỷ luật</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="content">Nội dung</label>
+                                <input type="text" class="form-control" id="content" name="content"
+                                       placeholder="nhập nội dung">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <!--**********************************

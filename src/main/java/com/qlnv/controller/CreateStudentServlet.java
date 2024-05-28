@@ -67,7 +67,7 @@ public class CreateStudentServlet extends HttpServlet {
         studentDAO.add(student);
 
         // Redirect to the students page after successful creation
-        resp.sendRedirect("/students");
+        resp.sendRedirect("/admin/student");
     }
 
     private Date parseDate(String dateStr) {

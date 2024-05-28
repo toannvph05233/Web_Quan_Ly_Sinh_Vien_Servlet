@@ -8,12 +8,13 @@ public class Account {
     private String avatar;
     private String idKhoa;
 
-    public Account(int id, String username, String password, String role, String avatar) {
+    public Account(int id, String username, String password, String role, String avatar, String idKhoa) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
         this.avatar = avatar;
+        this.idKhoa = idKhoa;
     }
 
     public String getIdKhoa() {

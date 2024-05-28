@@ -34,7 +34,11 @@ public class LoginServlet extends HttpServlet {
         if (account!= null){
             HttpSession session = req.getSession();
             session.setAttribute("account",account);
-            resp.sendRedirect("/nhanvien");
+            if (account.getRole().equals("admin")) {
+                resp.sendRedirect("/admin/student");
+            }else {
+                resp.sendRedirect("/students");
+            }
         } else {
             resp.sendRedirect("/login?mess=error");
 
