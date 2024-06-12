@@ -26,6 +26,10 @@ public class StudentServlet extends HttpServlet {
     KhoaDAO khoaDAO = new KhoaDAO();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String search = req.getParameter("search");
+        if (search == null){
+            search = "";
+        }
         HttpSession session = req.getSession();
         Account account = (Account) session.getAttribute("account");
         if (account == null) {
@@ -35,7 +39,7 @@ public class StudentServlet extends HttpServlet {
         String status = req.getParameter("status");
         List<Student> students = new ArrayList<>();
         if (status == null) {
-            students = studentDAO.findByIdKhoaAndStatus(account.getIdKhoa(), true);
+            students = studentDAO.findByIdKhoaAndName(account.getIdKhoa(), search);
         } else if (status.equals("true")) {
             students = studentDAO.findByIdKhoaAndStatus(account.getIdKhoa(), true);
         } else {

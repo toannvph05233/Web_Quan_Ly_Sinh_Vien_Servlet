@@ -21,10 +21,14 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String search = req.getParameter("search");
+        if (search == null){
+            search = "";
+        }
         String status = req.getParameter("status");
         List<Student> students = new ArrayList<>();
         if (status == null){
-            students = studentDAO.getAll();
+            students = studentDAO.getAll(search);
         }else if (status.equals("true")){
             students = studentDAO.getAllByType(true);
         }else {

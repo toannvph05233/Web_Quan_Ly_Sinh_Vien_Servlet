@@ -51,8 +51,8 @@
                         <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i
                                 class="mdi mdi-magnify"></i></span>
                     </div>
-                    <form action="/search" method="get" class="row">
-                        <input name="keyword" type="search" class="form-control col-8" placeholder="Search Students"
+                    <form action="/admin/student" method="get" class="row">
+                        <input name="search" type="search" class="form-control col-8" placeholder="Search Students"
                                aria-label="Search Students">
                         <button class="btn-primary col-4" type="submit">Search</button>
                     </form>
@@ -101,9 +101,9 @@
                         <i class="icon-user menu-icon"></i><span class="nav-text">Students</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="/students">All Students</a></li>
-                        <li><a href="/students?status=true">Active</a></li>
-                        <li><a href="/students?status=false">Inactive</a></li>
+                        <li><a href="/admin/student">All Students</a></li>
+                        <li><a href="/admin/student?status=true">Active</a></li>
+                        <li><a href="/admin/student?status=false">Inactive</a></li>
                     </ul>
                 </li>
                 <li>

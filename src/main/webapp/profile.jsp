@@ -179,11 +179,12 @@
                         <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i
                                 class="mdi mdi-magnify"></i></span>
                     </div>
-                    <form action="/search" method="get" class="row">
-                        <input name="keyword" type="search" class="form-control col-8" placeholder="Search Students"
+                    <form action="/students" method="get" class="row">
+                        <input name="search" type="search" class="form-control col-8" placeholder="Search Students"
                                aria-label="Search Students">
                         <button class="btn-primary col-4" type="submit">Search</button>
                     </form>
+
                 </div>
             </div>
             <div class="header-right">
